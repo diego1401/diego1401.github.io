@@ -1,12 +1,15 @@
 var currentModeList = ["rgb","depth"];
 var currentNumberOfViewsList = ["3","6","9"];
+var currentBaselineList = ["vanilla","zerorf"];
 var currentSceneList = ['flower','fortress','fern','leaves','orchids','room','trex','horns'];
+// var currentSceneList = ['fern','leaves','orchids','room'];
 var currentSceneProgressive = 'flower';
 var currentNumberOfViewsProgressive = 9;
 
 var currentSceneComparison = 'horns';
 var currentNumberOfViewsComparison = 3;
 var currentModeComparison = 'rgb';
+var currentBaselineComparison = 'vanilla';
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -50,9 +53,31 @@ document.addEventListener('DOMContentLoaded', function() {
             ChangeSceneComparison(index);
         });
     });
+
+    var children_comparison_mode = [].slice.call(document.getElementById("comparison-baseline-ul").children);
+    children_comparison_mode.forEach(function(item) {
+        item.addEventListener('click', function() {
+            const index = this.getAttribute('data-index');
+            ChangeBaselineComparison(index);
+        });
+    });
+
 });
 
 //Comparison Functions
+function ChangeBaselineComparison(idx){
+    var li_list = document.getElementById("comparison-baseline-ul").children;
+    for(i = 0; i < li_list.length; i++){
+        li_list[i].className = "";
+    }
+    li_list[idx].className = "active";
+    
+    currentBaselineComparison = currentBaselineList[idx];
+    document.getElementById("comparison").src = "static/"+currentModeComparison+"_videos/"+ currentSceneComparison + "_" + currentNumberOfViewsComparison +".mp4";
+    document.getElementById("comparisonRight").src = "static/"+currentModeComparison+"_videos_" + currentBaselineComparison + "/"+ currentSceneComparison + "_" + currentNumberOfViewsComparison +".mp4";
+
+}
+
 function ChangeModeComparison(idx){
     var li_list = document.getElementById("comparison-model-ul").children;
     for(i = 0; i < li_list.length; i++){
@@ -62,7 +87,7 @@ function ChangeModeComparison(idx){
     
     currentModeComparison = currentModeList[idx];
     document.getElementById("comparison").src = "static/"+currentModeComparison+"_videos/"+ currentSceneComparison + "_" + currentNumberOfViewsComparison +".mp4";
-    document.getElementById("comparisonRight").src = "static/"+currentModeComparison+"_videos_vanilla/"+ currentSceneComparison + "_" + currentNumberOfViewsComparison +".mp4";
+    document.getElementById("comparisonRight").src = "static/"+currentModeComparison+"_videos_" + currentBaselineComparison + "/"+ currentSceneComparison + "_" + currentNumberOfViewsComparison +".mp4";
 
 }
 
@@ -75,7 +100,7 @@ function ChangeNumberOfViewsComparison(idx){
     
     currentNumberOfViewsComparison = currentNumberOfViewsList[idx];
     document.getElementById("comparison").src = "static/"+currentModeComparison+"_videos/"+ currentSceneComparison + "_" + currentNumberOfViewsComparison +".mp4";
-    document.getElementById("comparisonRight").src = "static/"+currentModeComparison+"_videos_vanilla/"+ currentSceneComparison + "_" + currentNumberOfViewsComparison +".mp4";
+    document.getElementById("comparisonRight").src = "static/"+currentModeComparison+"_videos_" + currentBaselineComparison + "/"+ currentSceneComparison + "_" + currentNumberOfViewsComparison +".mp4";
 
 }
 
@@ -88,7 +113,7 @@ function ChangeSceneComparison(idx){
     
     currentSceneComparison = currentSceneList[idx];
     document.getElementById("comparison").src = "static/"+currentModeComparison+"_videos/"+ currentSceneComparison + "_" + currentNumberOfViewsComparison +".mp4";
-    document.getElementById("comparisonRight").src = "static/"+currentModeComparison+"_videos_vanilla/"+ currentSceneComparison + "_" + currentNumberOfViewsComparison +".mp4";
+    document.getElementById("comparisonRight").src = "static/"+currentModeComparison+"_videos_" + currentBaselineComparison + "/"+ currentSceneComparison + "_" + currentNumberOfViewsComparison +".mp4";
 
 }
 

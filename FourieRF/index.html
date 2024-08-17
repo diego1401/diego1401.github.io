@@ -161,12 +161,67 @@
 </section>
 <!-- End paper abstract -->
 
-<!-- RGB and Depth Videos -->
 <div class="hero">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="hero-body">
         <h2 class="title is-3">RGB/Depth comparison</h2>
+
+        <ul class="nav nav-pills nav-justified" id="comparison-baseline-ul" style="width: 100%">
+          <li role="presentation" data-index="0"><a>TensoRF</a></li>
+          <li role="presentation" class="active" data-index="1"><a>ZeroRF</a></li>
+        </ul>
+
+        <ul class="nav nav-pills nav-justified" id="comparison-model-ul" style="width: 100%">
+          <li role="presentation" class="active" data-index="0"><a>RGB</a></li>
+          <li role="presentation" data-index="1"><a>Depth</a></li>
+        </ul>
+
+        <ul class="nav nav-pills nav-justified" id="comparison-number-of-views-ul" style="width: 100%">
+          <li role="presentation" class="active" data-index="0"><a>3 views</a></li>
+          <li role="presentation" data-index="1"><a>6 views</a></li>
+          <!-- <li role="presentation" data-index="2"><a>9 views</a></li> -->
+        </ul>
+
+        <ul class="nav nav-pills nav-justified" id="comparison-scene-view-ul" style="width: 100%">
+          <!-- ['fern','leaves','orchids','room'] -->
+          <!-- ['flower','fortress','fern','leaves','orchids','room','trex','horns'] -->
+          <li role="presentation" data-index="0"><a>flower</a></li>
+          <li role="presentation" data-index="1"><a>fortress</a></li>
+          <li role="presentation" data-index="2"><a>fern</a></li>
+          <li role="presentation" data-index="3"><a>leaves</li>
+          <li role="presentation" data-index="4"><a>orchids</a></li>
+          <li role="presentation" data-index="5"><a>room</a></li>
+          <li role="presentation" data-index="6"><a>trex</a></li>
+          <li role="presentation" class="active" data-index="7"><a>horns</a></li>
+        </ul>
+
+        <div class="video-compare-container">
+          <video class="video" id="comparison" loop="" playsinline="" autoplay="" muted="" style="width: 100%" onplay="resizeAndPlay(this)"
+          src="static/rgb_videos/horns_3.mp4"></video>
+          <video class="video" id="comparisonRight" loop="" playsinline="" autoplay="" muted="" style="width: 0%"
+          src="static/rgb_videos_zerorf/horns_3.mp4"></video>
+          <canvas height=800 id="comparisonMerge"></canvas>
+        </div>
+
+        <h2 class="title is-5">Comparison between our method (Left) with TensoRF or ZeroRF (Right) </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RGB and Depth Videos -->
+<!-- <div class="hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="hero-body">
+        <h2 class="title is-3">RGB/Depth comparison</h2>
+
+        <ul class="nav nav-pills nav-justified" id="comparison-baseline-ul" style="width: 100%">
+          <li role="presentation" class="active" data-index="0"><a>TensoRF</a></li>
+          <li role="presentation" data-index="1"><a>ZeroRF</a></li>
+        </ul>
+
         <ul class="nav nav-pills nav-justified" id="comparison-model-ul" style="width: 100%">
           <li role="presentation" class="active" data-index="0"><a>RGB</a></li>
           <li role="presentation" data-index="1"><a>Depth</a></li>
@@ -174,8 +229,8 @@
 
         <ul class="nav nav-pills nav-justified" id="comparison-number-of-views-ul" style="width: 100%">
           <li role="presentation" data-index="0"><a>3 views</a></li>
-          <li role="presentation" data-index="1"><a>6 views</a></li>
-          <li role="presentation" class="active" data-index="2"><a>9 views</a></li>
+          <li role="presentation" class="active" data-index="1"><a>6 views</a></li>
+          <li role="presentation" data-index="2"><a>9 views</a></li>
         </ul>
 
         <ul class="nav nav-pills nav-justified" id="comparison-scene-view-ul" style="width: 100%">
@@ -196,10 +251,12 @@
           src="static/rgb_videos_vanilla/horns_3.mp4"></video>
           <canvas height=800 id="comparisonMerge"></canvas>
         </div>
+
+        <h2 class="title is-5">Comparison between our method (Left) with TensoRF or ZeroRF (Right) </h2>
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <!-- RGB and Depth Videos -->
 
 <!-- Progressive Complexity Inclusion Videos -->
