@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="Relightable assets using Radiance guided Material extraction">
+  <meta property="og:title" content="RRM"/>
+  <meta property="og:description" content="Relightable assets using Radiance guided Material extraction"/>
+  <meta property="og:url" content="https://www.lix.polytechnique.fr/~gomez/RRM_website/index.html"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <!-- <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/> -->
+
+
+  <meta name="twitter:title" content="RRM">
+  <meta name="twitter:description" content="Relightable assets using Radiance guided Material extraction">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/teaser.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Material Extraction, Inverse Rendering">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>RRM: Relightable assets using Radiance guided Material extraction</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/select.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">RRM: Relightable assets using Radiance guided Material extraction</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://www.lix.polytechnique.fr/~gomez/" target="_blank">Diego Gomez</a><sup>1,2</sup>,</span>
+                <span class="author-block">
+                  <a href="https://julienphilip.com/" target="_blank">Julien Philip</a><sup>2</sup>,</span>
+                  <span class="author-block">
+                    <a href="http://www.adrienkaiser.fr/" target="_blank">Adrien Kaiser</a><sup>2</sup>
+                  </span>
+                  <span class="author-block">
+                    <a href="https://portfolio.exppad.com/research.html" target="_blank">Elie Michel</a><sup>2</sup>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>1</sup>Ecole Polytechnique, <sup>2</sup>Adobe Research<br>
+                      <a href="https://www.cgs-network.org/cgi24/" target="_blank">CGI 2024</a></span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="static/pdfs/CGI_paper.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- Supplementary PDF link -->
+                    <span class="link-block">
+                      <a href="static/pdfs/CGI_paper_supp.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span>
+
+                  <!-- Github link -->
+                  <!-- <span class="link-block">
+                    <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code [Coming Soon] </span>
+                  </a>
+                </span> -->
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2407.06397" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv </span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser -->
+<section class="section hero teaser">
+  <div class="container is-max-desktop">
+    <img id="teaser" src="static/images/teaser.jpg" width="540px" height="500px">
+  </div>
+</section>
+<!-- End teaser -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Novel view synthesis has seen tremendous improvements over the last few years thanks to the rise of neural representations of light fields, 
+            shifting the paradigm for the acquisition of 3D data from photographs. However, these radiance-based approaches typically lack the ability 
+            to synthesize views under new lighting conditions. Recent efforts tackle the problem via the extraction of physically-based parameters that can then 
+            be rendered under arbitrary lighting, but they are limited in the range of scenes they can handle, usually mishandling glossy scenes. We propose RRM, 
+            a method that can extract the materials, geometry, and environment lighting of a scene even in the presence of highly reflective objects. We design 
+            a physically-aware radiance fields representation to supervise the diffuse and view-dependent components of a physically-based module that uses Multiple 
+            Importance Sampling to grasp the complex behavior of glossy indirect lighting as well as feed our expressive environment light structure based on Pyramids 
+            of Laplacians. We demonstrate that our contributions outperform the state-of-the-art on parameter retrieval tasks, leading to high-fidelity relighting and
+             novel view synthesis on surfacic scenes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <center>
+          <h2 class="title is-3">Example of decomposed scene</h2>
+          <video class="video" id="baseline" loop="" playsinline="" autoplay="" muted=""
+          poster="media/stuff/loading.gif" src="media/params/toaster.mp4" style="width: 60%">
+        </center>
+        
+        </video>
+      </div>
+    </div>
+
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+
+    <center>
+      <h4>
+        Type
+      </h4>
+      <ul class="nav nav-pills nav-justified" id="sim-view-ul" style="width: 100%">
+        <li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeSim(0);">Physically-Based NVS</a>
+        </li>
+        <li role="presentation"><a href="javascript: void(0);" onclick="ChangeSim(1);">Normals</a></li>
+        <li role="presentation"><a href="javascript: void(0);" onclick="ChangeSim(2);">Relighting</a></li>
+      </ul>
+      <h4>
+        Scene
+      </h4>
+      <ul class="nav nav-pills nav-justified" id="scene-view-ul" style="width: 100%">
+        </li>
+        <li role="presentation"><a href="javascript: void(0);" onclick="ChangeScene(0);">Car</a>
+        </li>
+        <li role="presentation"><a href="javascript: void(0);" onclick="ChangeScene(1);">Helmet</a>
+      </ul>
+      <h4>
+    </center>
+    <center>
+      <video class="video" id="comparison_video" loop="" playsinline="" autoplay="" muted="" style="width: 100%"
+        poster="media/stuff/loading.gif" src="media/pb/car.mp4">
+        <center>
+  </div>
+</div>
+  </div>
+</section>
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{gomez2024rrm,
+        title={RRM: Relightable assets using Radiance guided Material extraction},
+        author={Gomez, Diego and Philip, Julien and Kaiser, Adrien and Michel, {\'E}lie},
+        booktitle={Computer Graphics International Conference},
+        pages={17--41},
+        year={2024},
+        organization={Springer}
+      }
+  </code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
