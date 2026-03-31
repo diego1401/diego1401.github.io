@@ -57,6 +57,31 @@ table {
 		box-sizing: border-box;
 	}
 
+/* CSS Custom Properties — light mode defaults */
+:root {
+  --bg:          #f7f5f0;
+  --surface:     #efece6;
+  --text:        #1c1917;
+  --text-muted:  #6b6560;
+  --accent:      #1a7bbf;
+  --accent-hover:#003153;
+  --nav-bg:      #1c1917;
+  --nav-text:    #f7f5f0;
+  --border:      #dedad4;
+}
+
+html.dark {
+  --bg:          #141210;
+  --surface:     #1e1b18;
+  --text:        #e8e5de;
+  --text-muted:  #9a948e;
+  --accent:      #4da6d8;
+  --accent-hover:#89c4e1;
+  --nav-bg:      #0e0c0a;
+  --nav-text:    #e8e5de;
+  --border:      #2e2a26;
+}
+
 /*	Modification de la couleur et couleur de fond
 	lors de la selection du contenu
 */
@@ -64,7 +89,7 @@ table {
 		background: #ff9f39;
 		color: #fff;
 	}
-	
+
 	::-moz-selection {
 		background: #ff9f39;
 		color: #fff;
@@ -75,41 +100,14 @@ table {
 	- Taille des polices / Interlignages
 */
 
-/* Font-Face : déclaration de la police de caractères */
-@font-face {
-    font-family: 'DroidSansRegular';
-    src: url('../font/DroidSans-webfont.eot');
-    src: url('../font/DroidSans-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../font/DroidSans-webfont.woff') format('woff'),
-         url('../font/DroidSans-webfont.ttf') format('truetype'),
-         url('../font/DroidSans-webfont.svg#DroidSansRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'DroidSansBold';
-    src: url('../font/DroidSans-Bold-webfont.eot');
-    src: url('../font/DroidSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../font/DroidSans-Bold-webfont.woff') format('woff'),
-         url('../font/DroidSans-Bold-webfont.ttf') format('truetype'),
-         url('../font/DroidSans-Bold-webfont.svg#DroidSansBold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
 
 body {
-	/* Check vertical-rythm 
-	background-image: -webkit-linear-gradient(top, #ffffff, #ffffff 96%, #000000 100%); 	
-	background-size:21px 21px;
-	background-position: 0 -2px; */
-	background: #fff;
-	color:#000;
+	background: var(--bg);
+	color: var(--text);
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
 	line-height: 21px;
+	transition: background 0.3s, color 0.3s;
 }
 
 p, ul, h1, h2, h3, h4 {
@@ -145,67 +143,30 @@ em, i {
 
 /* Liens */
 a {
-		color: #1a7bbf;
+		color: var(--accent);
 		cursor: pointer;
 		text-decoration: none;
         font-weight: 500;
 }
 
 a:hover, a:focus {
-		color: #003153;
+		color: var(--accent-hover);
 		text-decoration: underline;
-		-webkit-transition: all 1s;
+		-webkit-transition: all 0.2s;
 }
 
-	/* Personnal add */
 
-.thumb {
-	/*position: relative;*/
-	float: left;
-	padding: 0px;
-	margin: 0px;
-	margin-right: 10px;
-	
-	/*width: 111px;
-	height: 88px;*/
-}
-
-.thumb img{
-
-	border-radius: 5px;
-	box-shadow: 3px 3px 5px;
-}
-
-.ref{
-	min-height:50px;
-	margin-left: 20px; /* Space between image and text */
-	
-}
-
-.ref_teaser{
+.ref_teaser {
 	display: flex;
-  	align-items: center;
+	align-items: center;
 }
 
-.news_with_image{
-	display: flex;
-	height: 31px;
-  	align-items: center;
+.title {
+	font-size: 16px;
+	font-weight: bold;
+	padding-top: 16px;
 }
 
-.title{
-    font-size: 16px;
-    font-weight: bold;
-    padding-top: 16px;
+.conf {
+	font-weight: 600;
 }
-
-.year{
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.conf{
-    font-weight: 600;
-}
-
-

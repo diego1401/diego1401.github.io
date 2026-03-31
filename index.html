@@ -13,6 +13,9 @@
 	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
+	<!-- Apply saved theme immediately to avoid flash -->
+	<script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
+
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="assets/css/reset.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -50,7 +53,7 @@
 			<li style="margin: 0 10px;"><a href="https://bsky.app/profile/diegoxgomez.bsky.social"><img src='images/bluesky.png' width='28' height='28' alt='Bluesky' /></a></li>
 			<li style="margin: 0 10px;"><a href="https://x.com/DiegoGomezLIX"><img src='images/twitter.png' width='28' height='28' alt='Twitter' /></a></li>
 			<li style="margin: 0 10px;"><a href="https://orcid.org/0009-0005-2847-8617"><img src='images/orcid.png' width='28' height='28' alt='orcid' /></a></li>
-
+			<li style="margin: 0 10px; display: flex; align-items: center;"><button id="theme-toggle" aria-label="Toggle dark mode">&#9790;</button></li>
 		</ul>
 	</nav>
 
@@ -128,14 +131,14 @@
 
 				<li style="margin-bottom: 20px;">
 					<!-- Adobe Internship -->
-						<!-- <img src='images/adobe_logo.png' style="width: auto; height: 40px; margin-right: 10px;" alt='Adobe Logo'/> -->
 						<p>
 							<b>04/2023</b> - I started an internship at Adobe Research Paris. I will collaborate with
-							<a href="https://portfolio.exppad.com/research.html">Élie Michel</a>, 
-							<a href="https://julienphilip.com/">Julien Philip</a> and 
+							<a href="https://portfolio.exppad.com/research.html">Élie Michel</a>,
+							<a href="https://julienphilip.com/">Julien Philip</a> and
 							<a href="http://www.adrienkaiser.fr/">Adrien Kaiser</a>.
 						</p>
 				</li>
+			</ul>
 
 			<!-- Research -->
 			<h3 id="research">Research</h3>
@@ -249,13 +252,20 @@
 		</div>
 	</section>
 
-	<!-- JavaScript Scripts -->
-	<script src="webpage/jquery-1.js"></script>
-	<script src="webpage/validate.js"></script>
-	<!--[if lt IE 9]>
-	<script src="scripts/placeholder.js"></script>
-	<![endif]-->
-	<script src="webpage/plugins.js"></script>
+	<script>
+	  (function () {
+	    var btn = document.getElementById('theme-toggle');
+	    function updateLabel() {
+	      btn.textContent = document.documentElement.classList.contains('dark') ? '\u2600' : '\u263E';
+	    }
+	    updateLabel();
+	    btn.addEventListener('click', function () {
+	      document.documentElement.classList.toggle('dark');
+	      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+	      updateLabel();
+	    });
+	  })();
+	</script>
 
 </body>
 </html>
