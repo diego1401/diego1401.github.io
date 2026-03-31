@@ -45,6 +45,17 @@
 			pointer-events: none;
 		}
 		#loadingIndicator.hidden { display: none; }
+		#viewer-toggle {
+			position: absolute; top: 10px; right: 10px; z-index: 10;
+			background: var(--surface); border: 1px solid var(--border);
+			border-radius: 20px; color: var(--text); cursor: pointer;
+			font-size: 14px; padding: 6px 12px; line-height: 1;
+			font-family: inherit;
+			transition: background 0.2s, color 0.2s, border-color 0.2s;
+			opacity: 0; pointer-events: none;
+		}
+		#viewer-toggle.ready { opacity: 1; pointer-events: auto; }
+		#viewer-toggle:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
 	</style>
 </head>
 
@@ -107,8 +118,8 @@
 			(function () {
 				if (!window.matchMedia('(max-width: 768px)').matches) {
 					document.getElementById('splat-viewer-col').innerHTML = [
-						'<pc-app antialias="false" depth="false" high-resolution="true" stencil="false">',
-						'  <pc-asset id="camera-controls" src="https://cdn.jsdelivr.net/npm/playcanvas@2.3.1/scripts/esm/camera-controls.mjs" preload></pc-asset>',
+						'<pc-app antialias="false" depth="true" high-resolution="true" stencil="false">',
+						'  <pc-asset id="camera-controls" src="https://cdn.jsdelivr.net/npm/playcanvas@2.3.3/scripts/esm/camera-controls.mjs" preload></pc-asset>',
 						'  <pc-asset id="ply" type="gsplat" src="gaussian_splats/website_gs.ply"></pc-asset>',
 						'  <pc-scene>',
 						'    <pc-entity name="camera root">',
@@ -125,7 +136,8 @@
 						'    </pc-entity>',
 						'  </pc-scene>',
 						'</pc-app>',
-						'<div id="loadingIndicator">Loading\u2026</div>'
+						'<div id="loadingIndicator">Loading\u2026</div>',
+						'<button id="viewer-toggle" title="Switch to Mesh view">&#9651;</button>'
 					].join('\n');
 				}
 			})();
