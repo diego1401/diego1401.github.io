@@ -52,54 +52,61 @@ Créateur : Christophe HERMANN (@chrishrmnn)
 /************
 /* Menu
 ************/
-.menu{
+.menu {
   list-style-type: none;
   margin: 0 auto;
-  padding: 0;
-  overflow: hidden;
+  padding: 5px 0;
   width: 92%;
-  max-width:800px;
-  background-color: var(--nav-bg);
+  max-width: 800px;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 2;
-  transition: background 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  transition: background 0.3s, border-color 0.3s;
 }
 .menu > li {
-float:left;
   display: inline;
-  color: var(--nav-text);
 }
-.menu > li > a{
-font-size: 18px;
-display: block;
-padding: 8px 8px 4px;
-background-color: var(--nav-bg);
-color: var(--nav-text);
+.menu > li > a {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  display: block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: transparent;
+  color: var(--text);
+  transition: background 0.2s, color 0.2s;
 }
-.menu img{
-  padding:1px;
-  border: 1px solid var(--nav-bg);
-  width:22px;
-  height:22px;
-}
-.menu img:hover {
-  border: 1px solid var(--nav-text);
+.menu > li > a:hover,
+.menu > li > a:focus {
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
 }
 
 #theme-toggle {
-  background: none;
-  border: 1px solid var(--nav-text);
-  border-radius: 4px;
-  color: var(--nav-text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text);
   cursor: pointer;
-  font-size: 14px;
-  padding: 3px 7px;
+  font-size: 13px;
+  padding: 5px 10px;
   line-height: 1;
   font-family: inherit;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 #theme-toggle:hover {
-  background: rgba(255,255,255,0.15);
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
 }
 
 

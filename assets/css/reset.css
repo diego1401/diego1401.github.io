@@ -59,27 +59,27 @@ table {
 
 /* CSS Custom Properties — light mode defaults */
 :root {
-  --bg:          #f7f5f0;
-  --surface:     #efece6;
-  --text:        #1c1917;
-  --text-muted:  #6b6560;
-  --accent:      #1a7bbf;
-  --accent-hover:#003153;
-  --nav-bg:      #1c1917;
-  --nav-text:    #f7f5f0;
-  --border:      #dedad4;
+  --bg:          #faf7f2;
+  --surface:     #f2ede5;
+  --text:        #3d2b1f;
+  --text-muted:  #8a7060;
+  --accent:      #b05c2f;
+  --accent-hover:#7a3e1e;
+  --nav-bg:      #c8a882;
+  --nav-text:    #3d2b1f;
+  --border:      #e5ddd4;
 }
 
 html.dark {
-  --bg:          #141210;
-  --surface:     #1e1b18;
-  --text:        #e8e5de;
-  --text-muted:  #9a948e;
-  --accent:      #4da6d8;
-  --accent-hover:#89c4e1;
-  --nav-bg:      #0e0c0a;
-  --nav-text:    #e8e5de;
-  --border:      #2e2a26;
+  --bg:          #1a1410;
+  --surface:     #241d18;
+  --text:        #f0ebe3;
+  --text-muted:  #b09a88;
+  --accent:      #d4865a;
+  --accent-hover:#e8a07a;
+  --nav-bg:      #2e2218;
+  --nav-text:    #f0ebe3;
+  --border:      #3d2d22;
 }
 
 /*	Modification de la couleur et couleur de fond
