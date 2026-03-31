@@ -54,20 +54,22 @@ Créateur : Christophe HERMANN (@chrishrmnn)
 ************/
 .menu {
   list-style-type: none;
-  margin: 0 auto;
-  padding: 5px 0;
-  width: 92%;
-  max-width: 800px;
+  margin: 8px auto;
+  padding: 5px 6px;
+  width: fit-content;
+  max-width: 92%;
   background-color: var(--surface);
-  border-bottom: 1px solid var(--border);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
   position: sticky;
-  top: 0;
+  top: 8px;
   z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  transition: background 0.3s, border-color 0.3s;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 .menu > li {
   display: inline;

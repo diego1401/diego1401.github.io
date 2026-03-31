@@ -1,0 +1,10 @@
+{
+    "camera": {
+        "fov": 50,
+        "position": null,
+        "target": null
+    },
+    "background": {
+        "color": [1, 1, 1]
+    }
+}

@@ -23,22 +23,44 @@
 	<link rel="stylesheet" media="screen and (max-width:540px)" href="assets/css/mobile.css">
 	<link rel="stylesheet" media="screen and (min-width:541px)" href="assets/css/cv.css">
 	<link rel="stylesheet" media="print" href="assets/css/print.css">
+
+	<script type="importmap">
+	{
+		"imports": {
+			"playcanvas": "https://cdn.jsdelivr.net/npm/playcanvas@2.3.3/build/playcanvas.mjs",
+			"viewerSettings": "./gaussian_splats/settings.json"
+		}
+	}
+	</script>
+	<script type="module" src="https://cdn.jsdelivr.net/npm/@playcanvas/web-components@0.1.11/dist/pwc.mjs"></script>
+	<script type="module" src="gaussian_splats/index.js"></script>
+	<style>
+		.splat-intro { display: flex; gap: 40px; align-items: flex-start; }
+		.splat-bio { flex: 1; min-width: 0; }
+		#splat-viewer-col { width: 380px; flex-shrink: 0; position: relative; min-height: 450px; }
+		#loadingIndicator {
+			position: absolute; inset: 0;
+			display: flex; align-items: center; justify-content: center;
+			font-size: 0.9em; color: var(--text-muted);
+			pointer-events: none;
+		}
+		#loadingIndicator.hidden { display: none; }
+	</style>
 </head>
 
 <body>
 
 	<!-- Header -->
 	<header role="banner">
-		<div class="container_16" style="padding: 20px; text-align: center;">
+		<div class="container_16">
 
 			<figure>
-				<img src="images/avatar.jpeg" alt="Diego GOMEZ" style="max-width: 100%; height: auto;">
+				<img src="images/avatar.jpeg" alt="Diego GOMEZ">
 			</figure>
 
 			<hgroup>
-				<h1 style="margin: 10px 0;"><nobr>Diego Gomez</nobr></h1>
-				<div style="height: 10px;"></div> <!-- Added space between name and title -->
-				<h2 style="margin: 5px 0;"><nobr>PhD Student</nobr> <br/> <nobr>LIX - Ecole Polytechnique</nobr></h2>
+				<h1><nobr>Diego Gomez</nobr></h1>
+				<h2><nobr>PhD Student</nobr> <br/> <nobr>LIX - Ecole Polytechnique</nobr></h2>
 			</hgroup>
 
 		</div>
@@ -61,21 +83,53 @@
 		<div class="grid_16">
 
 			<!-- About -->
-			<h3>Bio</h3>
-			<p>I am currently a PhD student working with Prof. <a href="https://www.lix.polytechnique.fr/~maks/">Maks Ovsjanikov</a>.</p>
+			<div class="splat-intro">
+				<div class="splat-bio">
+					<h3>Bio</h3>
+					<p>I am currently a PhD student working with Prof. <a href="https://www.lix.polytechnique.fr/~maks/">Maks Ovsjanikov</a>.</p>
 
-			<p>
-				I obtained an MSc in Applied Mathematics for Vision and Learning (<a href="https://www.master-mva.com/">MVA</a>) at 
-				<a href="https://ens-paris-saclay.fr/en">ENS Paris-Saclay</a> and a BSc in Mathematics and Computer Science at 
-				<a href="https://programmes.polytechnique.edu/en/bachelor/about-the-bachelor/bachelor-of-science">École Polytechnique</a>.
-			</p>
+					<p>
+						I obtained an MSc in Applied Mathematics for Vision and Learning (<a href="https://www.master-mva.com/">MVA</a>) at
+						<a href="https://ens-paris-saclay.fr/en">ENS Paris-Saclay</a> and a BSc in Mathematics and Computer Science at
+						<a href="https://programmes.polytechnique.edu/en/bachelor/about-the-bachelor/bachelor-of-science">École Polytechnique</a>.
+					</p>
 
-			<p>
-				I am deeply interested in the intersection of Computer Vision and Graphics, particularly in exploring how novel deep learning techniques 
-				can enhance the rich research landscape of these fields. Currently, I am focused on applying NeRF and 3DGS technologies in challenging scenarios, 
-				such as inverse rendering and few-shot novel view synthesis. Additionally, I am intrigued by the geometric knowledge 
-				encoded in generative models and plan to leverage this understanding to resolve ambiguities in underconstrained situations.
-			</p>
+					<p>
+						I am deeply interested in the intersection of Computer Vision and Graphics, particularly in exploring how novel deep learning techniques
+						can enhance the rich research landscape of these fields. Currently, I am focused on applying NeRF and 3DGS technologies in challenging scenarios,
+						such as inverse rendering and few-shot novel view synthesis. Additionally, I am intrigued by the geometric knowledge
+						encoded in generative models and plan to leverage this understanding to resolve ambiguities in underconstrained situations.
+					</p>
+				</div>
+				<div id="splat-viewer-col"></div>
+			</div>
+			<script>
+			(function () {
+				if (!window.matchMedia('(max-width: 768px)').matches) {
+					document.getElementById('splat-viewer-col').innerHTML = [
+						'<pc-app antialias="false" depth="false" high-resolution="true" stencil="false">',
+						'  <pc-asset id="camera-controls" src="https://cdn.jsdelivr.net/npm/playcanvas@2.3.1/scripts/esm/camera-controls.mjs" preload></pc-asset>',
+						'  <pc-asset id="ply" type="gsplat" src="gaussian_splats/website_gs.ply"></pc-asset>',
+						'  <pc-scene>',
+						'    <pc-entity name="camera root">',
+						'      <pc-entity name="camera">',
+						'        <pc-camera nearClip="0.01" farClip="1000" horizontalFov="true" tonemap="none"></pc-camera>',
+						'        <pc-scripts><pc-script name="cameraControls"></pc-script></pc-scripts>',
+						'      </pc-entity>',
+						'    </pc-entity>',
+						'    <pc-entity name="light" rotation="35 45 0">',
+						'      <pc-light color="white" intensity="1.5"></pc-light>',
+						'    </pc-entity>',
+						'    <pc-entity name="splat" rotation="0 0 180">',
+						'      <pc-splat asset="ply"></pc-splat>',
+						'    </pc-entity>',
+						'  </pc-scene>',
+						'</pc-app>',
+						'<div id="loadingIndicator">Loading\u2026</div>'
+					].join('\n');
+				}
+			})();
+			</script>
 
 			<h3>News</h3>
 			<ul style="padding-left: 20px;">
@@ -251,6 +305,11 @@
 		</div>
 	</section>
 
+	<footer style="text-align: center; padding: 20px; font-size: 0.8em; color: var(--text-muted);">
+		3D viewer powered by <a href="https://playcanvas.com">PlayCanvas</a> &amp; <a href="https://github.com/playcanvas/web-components">PlayCanvas Web Components</a>.
+		3DGS viewer inspired by <a href="https://clementjambon.github.io">Clément Jambon</a>'s website.
+	</footer>
+
 	<script>
 	  (function () {
 	    var btn = document.getElementById('theme-toggle');
@@ -265,6 +324,7 @@
 	    });
 	  })();
 	</script>
+
 
 </body>
 </html>

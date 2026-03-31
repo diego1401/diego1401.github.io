@@ -82,6 +82,12 @@ html.dark {
   --border:      #3d2d22;
 }
 
+/* Force white background on transparent images in dark mode */
+html.dark img.teaser {
+  background: #fff;
+  border-radius: 4px;
+}
+
 /*	Modification de la couleur et couleur de fond
 	lors de la selection du contenu
 */
