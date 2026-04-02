@@ -1,0 +1,3 @@
+[submodule "BlobsToSpokesWebsite"]
+	path = BlobsToSpokesWebsite
+	url = https://github.com/diego1401/BlobsToSpokesWebsite.git
