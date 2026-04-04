@@ -1,258 +1,438 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="Few-Shot NeRFs via Progressive Fourier Frequency Control">
-  <meta property="og:title" content="FourieRF"/>
-  <meta property="og:description" content="Few-Shot NeRFs via Progressive Fourier Frequency Control"/>
-  <meta property="og:url" content="URL OF THE WEBSITE"/>
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/FourierSymbol.svg" />
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
-
-
-  <meta name="twitter:title" content="FourieRF">
-  <meta name="twitter:description" content="Few-Shot NeRFs via Progressive Fourier Frequency Control">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/architecture.pdf">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="Fourier Transform, NeRF, Few-Shot">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="FourieRF: Few-Shot NeRFs via Progressive Fourier Frequency Control">
+  <meta name="description" content="A novel approach for few-shot NeRF estimation based on controlling the frequency of the learned signal in the Fourier domain, achieving efficient and accurate scene reconstruction from as few as 3 input views.">
+  <meta name="keywords" content="FourieRF, NeRF, Few-Shot, Fourier Transform, Neural Radiance Fields, 3D Reconstruction, Novel View Synthesis">
+  <meta name="author" content="Diego Gomez, Bingchen Gong, Maks Ovsjanikov">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
 
-  <title>FourieRF: Few-Shot NeRFs via Progressive Fourier Frequency Control</title>
-  <link rel="icon" type="image/x-icon" href="static/images/FourierSymbol.svg">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="LIX, Ecole Polytechnique">
+  <meta property="og:title" content="FourieRF: Few-Shot NeRFs via Progressive Fourier Frequency Control">
+  <meta property="og:description" content="A novel approach for few-shot NeRF estimation based on controlling the frequency of the learned signal in the Fourier domain.">
+  <meta property="og:url" content="https://diego1401.github.io/FourieRF/">
+  <meta property="og:image" content="static/images/architecture.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="FourieRF Architecture">
+  <meta property="article:published_time" content="2025-01-01">
+  <meta property="article:author" content="Diego Gomez">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="NeRF">
+  <meta property="article:tag" content="Few-Shot">
+  <meta property="article:tag" content="Fourier Transform">
 
-  <link rel="stylesheet" href="static/css/bootstrap.min.css"> <!--File for selection of displayed video-->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet"href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FourieRF: Few-Shot NeRFs via Progressive Fourier Frequency Control">
+  <meta name="twitter:description" content="A novel approach for few-shot NeRF estimation based on controlling the frequency of the learned signal in the Fourier domain.">
+  <meta name="twitter:image" content="static/images/architecture.png">
+  <meta name="twitter:image:alt" content="FourieRF Architecture">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="FourieRF: Few-Shot NeRFs via Progressive Fourier Frequency Control">
+  <meta name="citation_author" content="Gomez, Diego">
+  <meta name="citation_author" content="Gong, Bingchen">
+  <meta name="citation_author" content="Ovsjanikov, Maks">
+  <meta name="citation_publication_date" content="2025">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2502.01405">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>FourieRF</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="static/images/FourierSymbol.svg">
+
+  <!-- Critical CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/select.js"></script> <!--File for selection of displayed video-->
-  <script src="static/js/video_comparison.js"></script>
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Deferred JavaScript -->
+  <script defer src="static/js/magnifier.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "FourieRF: Few-Shot NeRFs via Progressive Fourier Frequency Control",
+    "description": "A novel approach for few-shot NeRF estimation based on controlling the frequency of the learned signal in the Fourier domain.",
+    "author": [
+      {"@type": "Person", "name": "Diego Gomez", "affiliation": {"@type": "Organization", "name": "LIX, Ecole Polytechnique"}},
+      {"@type": "Person", "name": "Bingchen Gong", "affiliation": {"@type": "Organization", "name": "LIX, Ecole Polytechnique"}},
+      {"@type": "Person", "name": "Maks Ovsjanikov", "affiliation": {"@type": "Organization", "name": "LIX, Ecole Polytechnique"}}
+    ],
+    "datePublished": "2025-01-01",
+    "publisher": {"@type": "Organization", "name": "3DV 2025"},
+    "url": "https://diego1401.github.io/FourieRF/",
+    "image": "static/images/architecture.png",
+    "keywords": ["NeRF", "Few-Shot", "Fourier Transform", "Novel View Synthesis", "3D Reconstruction"],
+    "abstract": "We present a novel approach for few-shot NeRF estimation, aimed at avoiding local artifacts and capable of efficiently reconstructing real scenes.",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  }
+  </script>
 </head>
 <body>
 
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
 
-<section class="hero">
+  <!-- Dark Mode Toggle -->
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+
+  <!-- Magnifier Help Button -->
+  <button class="magnifier-help-btn" onclick="toggleMagnifierHelp()" title="Magnifier instructions" aria-label="Magnifier instructions">
+    &#128269;
+  </button>
+  <div class="magnifier-help-popup" id="magnifierHelpPopup">
+    <div class="magnifier-help-row"><kbd>X</kbd> Hold to activate magnifier</div>
+    <div class="magnifier-help-row"><kbd>Scroll</kbd> Adjust zoom level</div>
+    <div class="magnifier-help-row"><kbd>C</kbd> Toggle comparison side</div>
+  </div>
+
+  <!-- More Works Dropdown -->
+  <div class="more-works-container">
+    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works">
+      <i class="fas fa-flask"></i>
+      More Works
+      <i class="fas fa-chevron-down dropdown-arrow"></i>
+    </button>
+    <div class="more-works-dropdown" id="moreWorksDropdown">
+      <div class="dropdown-header">
+        <h4>Related Work</h4>
+        <button class="close-btn" onclick="toggleMoreWorks()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="works-list">
+        <a href="https://jiawei-yang.github.io/FreeNeRF/" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>FreeNeRF</h5>
+            <p>Improving Few-Shot Neural Rendering with Free Frequency Regularization.</p>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="https://github.com/eliphatfs/zerorf?tab=readme-ov-file" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>ZeroRF</h5>
+            <p>Fast Sparse View 360 Reconstruction with Zero Pretraining.</p>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- HERO — Title, Authors, Affiliations, Links                        -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">FourieRF: Few-Shot NeRFs via Progressive Fourier Frequency Control</h1>
+
             <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
               <span class="author-block"><a href="https://www.lix.polytechnique.fr/~gomez/" target="_blank">Diego Gomez</a>,</span>
-                <span class="author-block"><a href="https://s2.hk" target="_blank">Bingchen Gong</a>,</span>
-                <span class="author-block"><a href="https://www.lix.polytechnique.fr/~maks/" target="_blank">Maks Ovsjanikov</a></span>
-                  </div>
+              <span class="author-block"><a href="https://s2.hk" target="_blank">Bingchen Gong</a>,</span>
+              <span class="author-block"><a href="https://www.lix.polytechnique.fr/~maks/" target="_blank">Maks Ovsjanikov</a></span>
+            </div>
 
-                  <div class="is-size-5 publication-authors">
-                    <span class="author-block">LIX, École Polytechnique<br><a href="https://3dvconf.github.io/2025/">3DV 2025</a></span>
-                  </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">LIX, Ecole Polytechnique</span>
+            </div>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
+            <div class="publication-venue">3DV 2025</div>
 
-                  <!-- Github link -->
-                  <span class="link-block">
-                    <a href="https://github.com/diego1401/FourieRF.git" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+
+                <!-- arXiv Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2502.01405" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+
+                <!-- Code Link -->
+                <span class="link-block">
+                  <a href="https://github.com/diego1401/FourieRF.git" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
                     <span>Code</span>
                   </a>
                 </span>
 
-                <!-- ArXiv abstract Link -->
+                <!-- PDF Link -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2502.01405" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv </span>
-                </a>
-              </span>
+                  <a href="https://arxiv.org/pdf/2502.01405" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>PDF</span>
+                  </a>
+                </span>
+
+              </div>
             </div>
+
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            We present a novel approach for few-shot NeRF estimation, aimed at avoiding local artifacts and capable of efficiently reconstructing real scenes. 
-            In contrast to previous methods that rely on pre-trained modules or various data-driven priors that only work well in specific scenarios, our method is fully generic and is based on controlling the frequency of the learned signal in the Fourier domain.
-            We observe that in NeRF learning methods,  high-frequency artifacts often show up early in the optimization process, and the network struggles to correct them due to the lack of dense supervision in few-shot cases. 
-            To counter this, we introduce an explicit curriculum training procedure, which progressively adds higher frequencies throughout optimization, thus favoring global, low-frequency signals initially, and only adding details later. We represent the radiance fields using a grid-based model and introduce an efficient approach to control the frequency band of the learned signal in the Fourier domain.
-            Therefore our method achieves faster reconstruction and better rendering quality than purely MLP-based methods.
-            We show that our approach is general and is capable of producing high-quality results on real scenes, at a fraction of the cost of competing methods. Our method opens the door to efficient and accurate scene acquisition in the few-shot NeRF setting.           </p>
-        </div>
-        <div class="container has-text-centered">
-          <img src="static/images/architecture.png" alt="MY ALT TEXT"/>
-        </div>
-        <h2 class="subtitle has-text-centered">
-          <b>Method Architecture. </b> Our method initializes 1D and 2D features in spatial space, projects them into the Fourier domain, and clips them with 
-          specialized filters. Projecting the clipped features back to spatial space allows us to retrieve smooth shapes. 
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- TEASER — Main Figure                                              -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img class="zoomable-image" src="static/teaser.jpg" alt="FourieRF teaser showing progressive frequency control on NeRF reconstruction" loading="lazy" style="width:100%; border-radius: 12px;"/>
+        <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
+          <strong>FourieRF</strong> progressively integrates higher frequencies during optimization, avoiding early artifacts
+          and producing high-quality novel views from as few as 3 input images.
         </h2>
       </div>
     </div>
-  </div>
-</section>
-<!-- End paper abstract -->
+  </section>
 
-<!-- Progressive Complexity Inclusion Videos -->
-<div class="hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="hero-body">
-        <h2 class="title is-3">Progressively Integrating Complexity</h2>
-        <ul class="nav nav-pills nav-justified" id="number-of-views-ul" style="width: 100%">
-          <li role="presentation" class="active" data-index="0"><a>3 views</a></li>
-          <li role="presentation" data-index="1"><a>6 views</a></li>
-          <li role="presentation" data-index="2"><a>9 views</a></li>
-        </ul>
-
-        <ul class="nav nav-pills nav-justified" id="scene-view-ul" style="width: 100%">
-          <li role="presentation" class="active" data-index="0"><a>flower</a></li>
-          <li role="presentation" data-index="1"><a>fortress</a></li>
-          <li role="presentation" data-index="2"><a>fern</a></li>
-          <li role="presentation" data-index="3"><a>leaves</a></li>
-          <li role="presentation" data-index="4"><a>orchids</a></li>
-          <li role="presentation" data-index="5"><a>room</a></li>
-          <li role="presentation" data-index="6"><a>trex</a></li>
-          <li role="presentation" data-index="7"><a>horns</a></li>
-        </ul>
-
-        <br></br>
-        <video class="video" id="progressive_complexity" loop="" playsinline="" autoplay="" muted="" style="width: 100%"
-          src="static/videos/flower_9_0.mp4" ></video>
-          <h2 class="title is-5">RGB (Left) and Depth prediction (Right) throughout training. </h2>
-      </div>
-      </div>
-      <h2 class="subtitle has-text-centered">
-        Overall, our method is built on two key observations. First, we note that both strong overfitting and high-frequency artifacts typically 
-        occur early in the optimization process, and, if avoided in these early stages, they are significantly 
-        less prominent in the final result. Second, we note that by gradually increasing the maximal Fourier frequency of the learned 
-        signal both significantly regularizes the learned NeRF, 
-        while at the same time, providing the network enough degrees of freedom to learn the fine details (in the final stages of the optimization). 
-      </h2>
-  </div>
-</div>
-<!-- End Progressive Complexity Inclusion Videos -->
-
-<!-- Comparison Videos -->
-<div class="hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="hero-body">
-        <h2 class="title is-3">RGB/Depth comparison</h2>
-        <h2 class="title is-5">Compare our method with TensoRF or ZeroRF in the following settings. </h2>
-        <ul class="nav nav-pills nav-justified" id="comparison-baseline-ul" style="width: 100%">
-          <li role="presentation" data-index="0"><a>TensoRF</a></li>
-          <li role="presentation" class="active" data-index="1"><a>ZeroRF</a></li>
-        </ul>
-
-        <ul class="nav nav-pills nav-justified" id="comparison-model-ul" style="width: 100%">
-          <li role="presentation" class="active" data-index="0"><a>RGB</a></li>
-          <li role="presentation" data-index="1"><a>Depth</a></li>
-        </ul>
-
-        <ul class="nav nav-pills nav-justified" id="comparison-number-of-views-ul" style="width: 100%">
-          <li role="presentation" class="active" data-index="0"><a>3 views</a></li>
-          <li role="presentation" data-index="1"><a>6 views</a></li>
-          <li role="presentation" data-index="2"><a>9 views</a></li>
-        </ul>
-
-        <ul class="nav nav-pills nav-justified" id="comparison-scene-view-ul" style="width: 100%">
-          <li role="presentation" data-index="0"><a>flower</a></li>
-          <li role="presentation" data-index="1"><a>fortress</a></li>
-          <li role="presentation" data-index="2"><a>fern</a></li>
-          <li role="presentation" data-index="3"><a>leaves</a></li>
-          <li role="presentation" data-index="4"><a>orchids</a></li>
-          <li role="presentation" data-index="5"><a>room</a></li>
-          <li role="presentation" data-index="6"><a>trex</a></li>
-          <li role="presentation" class="active" data-index="7"><a>horns</a></li>
-        </ul>
-
-        <div class="video-compare-container">
-          <video class="video" id="comparison" loop="" playsinline="" autoplay="" muted="" style="width: 0%" onplay="resizeAndPlay(this)"
-          src="static/rgb_videos/horns_3.mp4"></video>
-          <video class="video" id="comparisonRight" loop="" playsinline="" autoplay="" muted="" style="width: 0%"
-          src="static/rgb_videos_zerorf/horns_3.mp4"></video>
-          <canvas height=800 id="comparisonMerge"></canvas>
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- TL;DR — Key Contributions                                         -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section tldr-section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">TL;DR</h2>
+      <p class="tldr-lead">
+        We control the Fourier frequency of the learned radiance field during training, progressively adding detail to prevent few-shot artifacts &mdash; no pretrained priors needed.
+      </p>
+      <div class="columns is-centered is-multiline tldr-stats">
+        <div class="column is-one-quarter-desktop is-half-tablet has-text-centered">
+          <div class="tldr-stat-value">3&ndash;9</div>
+          <p class="tldr-stat-label">Input Views</p>
+          <p class="tldr-stat-desc">High-quality rendering from as few as 3 input images of a scene.</p>
         </div>
-
-        <h2 class="title is-5">Comparison between our method (Left) with TensoRF or ZeroRF (Right) </h2>
+        <div class="column is-one-quarter-desktop is-half-tablet has-text-centered">
+          <div class="tldr-stat-value">100%</div>
+          <p class="tldr-stat-label">Generic</p>
+          <p class="tldr-stat-desc">No pretrained modules or data-driven priors &mdash; works across any scenario.</p>
+        </div>
+        <div class="column is-one-quarter-desktop is-half-tablet has-text-centered">
+          <div class="tldr-stat-value">Faster</div>
+          <p class="tldr-stat-label">Training</p>
+          <p class="tldr-stat-desc">Grid-based model achieves faster reconstruction than purely MLP-based methods.</p>
+        </div>
+        <div class="column is-one-quarter-desktop is-half-tablet has-text-centered">
+          <div class="tldr-stat-value">Fourier</div>
+          <p class="tldr-stat-label">Frequency Control</p>
+          <p class="tldr-stat-desc">Progressive curriculum prevents high-frequency artifacts and floaters.</p>
+        </div>
       </div>
     </div>
-    <h2 class="subtitle has-text-centered">
-      Our method is the best accelerated apporach to process real scenes in the few-shot rendering problem. 
-      We can see that both the baselines TensoRF and ZeroRF fail to capture correct geometry and appearance. These 
-      methods fill the scene with incoherent geometry and floaters.
-    </h2>
-  </div>
-</div>
-<!-- End Comparison Videos -->
+  </section>
 
-<!--BibTex citation -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- ABSTRACT                                                          -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We present a novel approach for few-shot NeRF estimation, aimed at avoiding local artifacts and capable of efficiently reconstructing real scenes.
+              In contrast to previous methods that rely on pre-trained modules or various data-driven priors that only work well in specific scenarios, our method is fully generic and is based on controlling the frequency of the learned signal in the Fourier domain.
+              We observe that in NeRF learning methods, high-frequency artifacts often show up early in the optimization process, and the network struggles to correct them due to the lack of dense supervision in few-shot cases.
+              To counter this, we introduce an explicit curriculum training procedure, which progressively adds higher frequencies throughout optimization, thus favoring global, low-frequency signals initially, and only adding details later. We represent the radiance fields using a grid-based model and introduce an efficient approach to control the frequency band of the learned signal in the Fourier domain.
+              Therefore our method achieves faster reconstruction and better rendering quality than purely MLP-based methods.
+              We show that our approach is general and is capable of producing high-quality results on real scenes, at a fraction of the cost of competing methods. Our method opens the door to efficient and accurate scene acquisition in the few-shot NeRF setting.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- METHOD OVERVIEW                                                   -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Method Overview</h2>
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <img class="zoomable-image" src="static/images/architecture.png" alt="FourieRF method architecture" loading="lazy"
+               style="width:100%; border-radius: var(--border-radius);"/>
+          <p class="figure-caption">
+            <strong>Method Architecture.</strong> Our method initializes 1D and 2D features in spatial space, projects them into the Fourier domain, and clips them with
+            specialized filters. Projecting the clipped features back to spatial space allows us to retrieve smooth shapes.
+          </p>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-10 content has-text-justified">
+          <p>
+            Our method is built on two key observations. First, both strong overfitting and high-frequency artifacts typically
+            occur early in the optimization process, and, if avoided in these early stages, they are significantly
+            less prominent in the final result. Second, by gradually increasing the maximal Fourier frequency of the learned
+            signal both significantly regularizes the learned NeRF,
+            while at the same time, providing the network enough degrees of freedom to learn the fine details in the final stages of the optimization.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PROGRESSIVE COMPLEXITY — Single Video Widget                      -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="progressive-complexity">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Progressively Integrating Complexity</h2>
+      <div class="columns is-centered">
+        <div class="column is-10 content has-text-justified">
+          <p>
+            Watch how our method progressively integrates complexity during training. RGB (left) and depth prediction (right) evolve smoothly from low-frequency to high-frequency detail, avoiding the floaters and artifacts that plague standard few-shot NeRF methods.
+          </p>
+        </div>
+      </div>
+      <div class="comparison-widget" id="progressive-complexity-widget">
+        <div class="comparison-controls"></div>
+        <video muted loop playsinline autoplay style="width: 100%; border-radius: 8px;"
+               src="static/videos/flower_3_0.mp4"></video>
+        <p class="figure-caption">
+          RGB (Left) and Depth prediction (Right) throughout training. Select different scenes and view counts to explore.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- VIDEO COMPARISON SLIDER — Ours vs Baselines                       -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section hero is-light" id="video-comparisons">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">RGB / Depth Comparison</h2>
+      <p class="has-text-centered" style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+        Drag the slider to compare our method with TensoRF or ZeroRF side by side. Click to pause, then scrub the timeline.
+      </p>
+      <div class="comparison-widget" id="video-comparison-widget">
+        <div class="comparison-controls"></div>
+        <div class="video-comparison-container"
+             role="slider" aria-label="Video comparison slider"
+             aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+          <video class="video-comparison-right" muted loop playsinline aria-hidden="true"></video>
+          <video class="video-comparison-left" muted loop playsinline aria-hidden="true"></video>
+          <div class="comparison-divider" aria-hidden="true">
+            <div class="comparison-handle">&#8596;</div>
+          </div>
+          <span class="comparison-label-left">Ours</span>
+          <span class="comparison-label-right">TensoRF</span>
+          <div class="video-play-pause-overlay" aria-hidden="true">
+            <i class="fas fa-pause"></i>
+          </div>
+        </div>
+        <div class="video-timeline">
+          <div class="video-timeline-track">
+            <div class="video-timeline-filled"></div>
+            <div class="video-timeline-handle"></div>
+          </div>
+        </div>
+      </div>
+      <p class="figure-caption">
+        Our method produces cleaner geometry and appearance, while baselines TensoRF and ZeroRF fill the scene with incoherent geometry and floaters.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- BIBTEX                                                            -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>@inproceedings{gomez2025fourierf,
-        title={FourieRF: Few-Shot NeRFs via Progressive Fourier Frequency Control},
-        author={Gomez, Diego and Gong, Bingchen and Ovsjanikov, Maks},
-        booktitle={International Conference on 3D Vision 2025}
-      }</code></pre>
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code>@inproceedings{gomez2025fourierf,
+  title={FourieRF: Few-Shot NeRFs via Progressive Fourier Frequency Control},
+  author={Gomez, Diego and Gong, Bingchen and Ovsjanikov, Maks},
+  booktitle={International Conference on 3D Vision (3DV)},
+  year={2025}
+}</code></pre>
     </div>
-</section>
-<!--End BibTex citation -->
-
+  </section>
 
   <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page. 
-            We also took inspiration from the <a href="https://dorverbin.github.io/refnerf/" target="_blank">Ref-NeRF</a> and 
-            <a href="https://haian-jin.github.io/TensoIR/" target="_blank">TensoIR</a> project pages.
-            You are free to borrow the of this website, please link back to the above page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+  </main>
+</body>
+</html>

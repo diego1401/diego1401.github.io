@@ -146,7 +146,7 @@ html.dark .menu {
 }
 .menu > li > a:hover,
 .menu > li > a:focus {
-  background: var(--accent);
+  background: #fa7970;
   color: #fff;
   text-decoration: none;
 }
@@ -159,12 +159,13 @@ html.dark .menu {
   cursor: pointer;
   font-size: 14px;
   padding: 6px 12px;
+  margin-left: 8px;
   line-height: 1;
   font-family: inherit;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 #theme-toggle:hover {
-  background: var(--accent);
+  background: #fa7970;
   color: #fff;
   border-color: var(--accent);
 }
@@ -206,8 +207,54 @@ html.dark .menu {
 	section[role=main] h3::after {
 		content: none;
 	}
-	
-	
+
+	/* Updates timeline dots */
+	.updates-list li {
+		position: relative;
+		padding-left: 16px;
+	}
+
+	.updates-list li p {
+		margin-top: 0;
+	}
+
+	.updates-list li::before {
+		content: '';
+		position: absolute;
+		left: -6px;
+		top: 8px;
+		width: 8px;
+		height: 8px;
+		background: var(--accent);
+		border-radius: 50%;
+	}
+
+	/* Collapsible older updates */
+	.older-updates {
+		padding-left: 20px;
+		margin-top: -10px;
+	}
+
+	.older-updates summary {
+		cursor: pointer;
+		color: var(--accent);
+		font-size: 0.9em;
+		padding: 6px 0;
+		list-style: none;
+	}
+
+	.older-updates summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.older-updates summary::before {
+		content: '+ ';
+	}
+
+	.older-updates[open] summary::before {
+		content: '- ';
+	}
+
 
 /***************************
 /* Paper card hover effects
@@ -229,5 +276,60 @@ html.dark .menu {
 
 html.dark .ref_teaser:hover {
 	box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.ref_teaser.featured {
+	background: #dafbe1;
+}
+
+html.dark .ref_teaser.featured {
+	background: #1a2e22;
+	color: var(--text);
+}
+
+html.dark .ref_teaser.featured .authors,
+html.dark .ref_teaser.featured .conf {
+	color: var(--text-muted);
+}
+
+html.dark .ref_teaser.featured .title a {
+	color: #6fdc8c;
+}
+
+/***************************
+/* Paper/Project link badges
+***************************/
+.badge {
+	display: inline-block;
+	font-size: 0.7em;
+	font-weight: 600;
+	padding: 2px 8px;
+	border-radius: 4px;
+	text-decoration: none;
+	vertical-align: middle;
+	margin-left: 4px;
+	transition: opacity 200ms ease;
+}
+
+.badge:hover {
+	opacity: 0.8;
+}
+
+.badge-paper {
+	background: #2563eb;
+	color: #fff;
+}
+
+.badge-project {
+	background: #555d66;
+	color: #fff;
+}
+
+html.dark .badge-paper {
+	background: #2563eb;
+}
+
+html.dark .badge-project {
+	background: #555d66;
 }
 

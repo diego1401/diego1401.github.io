@@ -59,27 +59,27 @@ table {
 
 /* CSS Custom Properties — light mode defaults */
 :root {
-  --bg:          #faf7f2;
-  --surface:     #f2ede5;
-  --text:        #3d2b1f;
-  --text-muted:  #8a7060;
-  --accent:      #b05c2f;
-  --accent-hover:#7a3e1e;
-  --nav-bg:      #c8a882;
-  --nav-text:    #3d2b1f;
-  --border:      #e5ddd4;
+  --bg:          #ffffff;
+  --surface:     #f6f8fa;
+  --text:        #1f2328;
+  --text-muted:  #656d76;
+  --accent:      #0969da;
+  --accent-hover:#0550ae;
+  --nav-bg:      #24292f;
+  --nav-text:    #ffffff;
+  --border:      #d0d7de;
 }
 
 html.dark {
-  --bg:          #1a1410;
-  --surface:     #241d18;
-  --text:        #f0ebe3;
-  --text-muted:  #b09a88;
-  --accent:      #d4865a;
-  --accent-hover:#e8a07a;
-  --nav-bg:      #2e2218;
-  --nav-text:    #f0ebe3;
-  --border:      #3d2d22;
+  --bg:          #0d1117;
+  --surface:     #161b22;
+  --text:        #c6cdd5;
+  --text-muted:  #89929b;
+  --accent:      #77bdfb;
+  --accent-hover:#a2d2fb;
+  --nav-bg:      #161b22;
+  --nav-text:    #ecf2f8;
+  --border:      #21262d;
 }
 
 /* Force white background on transparent images in dark mode */
