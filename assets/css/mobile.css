@@ -383,7 +383,93 @@ html.dark .holo-text {
 /* GitHub Projects - mobile
 ***************************/
 .gh-projects {
+	display: grid;
 	grid-template-columns: 1fr;
+	gap: 8px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.gh-card {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 12px;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	text-decoration: none;
+	color: var(--text);
+	transition: border-color 200ms ease;
+}
+
+.gh-card:hover {
+	border-color: var(--accent);
+}
+
+.gh-card-header {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex-shrink: 0;
+}
+
+.gh-repo-icon {
+	color: var(--text-muted);
+	flex-shrink: 0;
+}
+
+.gh-card-name {
+	font-weight: 600;
+	font-size: 0.85em;
+	color: var(--accent);
+	white-space: nowrap;
+}
+
+.gh-card-desc {
+	font-size: 0.75em;
+	color: var(--text-muted);
+	margin: 0;
+	flex: 1;
+	min-width: 0;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.gh-card-footer {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 0.7em;
+	color: var(--text-muted);
+	flex-shrink: 0;
+}
+
+.gh-lang {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.gh-lang-dot {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	border: 1px solid var(--border);
+}
+
+.gh-stars {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
+}
+
+.gh-stars svg {
+	width: 14px;
+	height: 14px;
 }
 
 /* Accessibility: respect reduced motion preference */
