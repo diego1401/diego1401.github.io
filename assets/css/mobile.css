@@ -379,6 +379,13 @@ html.dark .holo-text {
 	background: #1a2e22;
 }
 
+/***************************
+/* GitHub Projects - mobile
+***************************/
+.gh-projects {
+	grid-template-columns: 1fr;
+}
+
 /* Accessibility: respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
 	.ref_teaser.holo::after, .holo-text::after { animation: none; background-position: 50% 50%; }
