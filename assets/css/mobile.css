@@ -273,6 +273,21 @@ html.dark .ref_teaser.featured .title a {
 	color: #fff;
 }
 
+.badge-new {
+	background: #e53e3e;
+	color: #fff;
+	animation: badge-pulse 2s ease-in-out infinite;
+}
+
+html.dark .badge-new {
+	background: #f56565;
+}
+
+@keyframes badge-pulse {
+	0%, 100% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.5); }
+	50%      { box-shadow: 0 0 8px 4px rgba(229, 62, 62, 0.25); }
+}
+
 /* Dark mode menu shadow */
 html.dark .menu {
 	box-shadow: 0 4px 20px rgba(0,0,0,0.35);
