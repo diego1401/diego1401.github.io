@@ -278,3 +278,94 @@ html.dark .menu {
 	box-shadow: 0 4px 20px rgba(0,0,0,0.35);
 }
 
+/***************************
+/* Holographic card effect
+***************************/
+.ref_teaser.holo {
+	position: relative;
+	overflow: hidden;
+	border: 1.5px solid rgba(255, 255, 255, 0.15);
+}
+
+html.dark .ref_teaser.holo {
+	border-color: rgba(255, 255, 255, 0.08);
+}
+
+.ref_teaser.holo::after,
+.holo-text::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		125deg,
+		rgba(255, 0, 0, 0.35) 0%,
+		rgba(255, 154, 0, 0.35) 10%,
+		rgba(208, 222, 33, 0.3) 20%,
+		rgba(79, 220, 74, 0.3) 30%,
+		rgba(63, 218, 216, 0.35) 40%,
+		rgba(47, 201, 226, 0.35) 50%,
+		rgba(28, 127, 238, 0.38) 60%,
+		rgba(95, 21, 242, 0.38) 70%,
+		rgba(186, 12, 248, 0.35) 80%,
+		rgba(251, 7, 217, 0.35) 90%,
+		rgba(255, 0, 0, 0.35) 100%
+	);
+	background-size: 200% 200%;
+	animation: holo-shimmer 6s ease-in-out infinite;
+	pointer-events: none;
+	z-index: 1;
+	mix-blend-mode: multiply;
+	border-radius: inherit;
+}
+
+html.dark .ref_teaser.holo::after,
+html.dark .holo-text::after {
+	background: linear-gradient(
+		125deg,
+		rgba(255, 0, 0, 0.25) 0%,
+		rgba(255, 154, 0, 0.25) 10%,
+		rgba(208, 222, 33, 0.25) 20%,
+		rgba(79, 220, 74, 0.25) 30%,
+		rgba(63, 218, 216, 0.25) 40%,
+		rgba(47, 201, 226, 0.25) 50%,
+		rgba(28, 127, 238, 0.25) 60%,
+		rgba(95, 21, 242, 0.25) 70%,
+		rgba(186, 12, 248, 0.25) 80%,
+		rgba(251, 7, 217, 0.25) 90%,
+		rgba(255, 0, 0, 0.25) 100%
+	);
+	background-size: 200% 200%;
+	mix-blend-mode: color-dodge;
+}
+
+@keyframes holo-shimmer {
+	0%   { background-position: 0% 50%; }
+	50%  { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+/***************************
+/* Holographic text list item
+***************************/
+.holo-text {
+	position: relative;
+	overflow: hidden;
+	border-radius: 6px;
+	padding: 8px 10px;
+	background: #dafbe1;
+	list-style: none;
+}
+
+.holo-text::before {
+	display: none;
+}
+
+html.dark .holo-text {
+	background: #1a2e22;
+}
+
+/* Accessibility: respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+	.ref_teaser.holo::after, .holo-text::after { animation: none; background-position: 50% 50%; }
+}
+
