@@ -33,7 +33,6 @@
 	}
 	</script>
 	<script type="module" src="https://cdn.jsdelivr.net/npm/@playcanvas/web-components@0.1.11/dist/pwc.mjs"></script>
-	<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
 	<script type="module" src="gaussian_splats/index.js"></script>
 	<style>
 		.splat-intro { display: flex; gap: 40px; align-items: flex-start; }
@@ -60,11 +59,6 @@
 		#viewer-toggle.ready { opacity: 1; pointer-events: auto; }
 		#viewer-toggle:hover { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
 		#viewer-toggle .toggle-icon { font-size: 15px; }
-		#mesh-viewer {
-			position: absolute; inset: 0; width: 100%; height: 100%;
-			display: none;
-			--poster-color: transparent;
-		}
 	</style>
 </head>
 
@@ -123,13 +117,14 @@
 				</div>
 				<div id="splat-viewer-col"></div>
 			</div>
+			<p id="mesh-caption" style="text-align:right;font-size:0.75rem;color:#888;margin-top:4px;margin-left:auto;width:380px;display:none;">Mesh obtained with <a href="https://arxiv.org/abs/2506.24096" style="color:#888;">Gaussian Wrapping: Primal Adaptive Meshing</a> and Blender Mesh Decimation.</p>
 			<script>
 			(function () {
 				if (!window.matchMedia('(max-width: 768px)').matches) {
 					document.getElementById('splat-viewer-col').innerHTML = [
 						'<pc-app antialias="false" depth="true" high-resolution="true" stencil="false">',
 						'  <pc-asset id="camera-controls" src="https://cdn.jsdelivr.net/npm/playcanvas@2.3.3/scripts/esm/camera-controls.mjs" preload></pc-asset>',
-						'  <pc-asset id="ply" type="gsplat" src="gaussian_splats/website_gs.ply"></pc-asset>',
+						'  <pc-asset id="ply" type="gsplat" src="gaussian_splats/bike_3dgs_filtered.ply"></pc-asset>',
 						'  <pc-scene>',
 						'    <pc-entity name="camera root">',
 						'      <pc-entity name="camera">',
@@ -145,9 +140,6 @@
 						'    </pc-entity>',
 						'  </pc-scene>',
 						'</pc-app>',
-						'<model-viewer id="mesh-viewer" alt="3D Mesh" src="gaussian_splats/website_mesh.glb"',
-						'  camera-controls shadow-intensity="1" exposure="0.6"',
-						'  camera-orbit="45deg 70deg auto"></model-viewer>',
 						'<div id="loadingIndicator">Loading\u2026</div>',
 						'<button id="viewer-toggle" title="Switch to Mesh view">',
 						'  <span class="toggle-icon">&#9653;</span> Mesh',
