@@ -474,6 +474,6 @@ html.dark .holo-text {
 
 /* Accessibility: respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-	.ref_teaser.holo::after, .holo-text::after { animation: none; background-position: 50% 50%; }
+	.ref_teaser.holo::after, .holo-text::after, .gh-card.holo::after { animation: none; background-position: 50% 50%; }
 }
 
