@@ -34,6 +34,7 @@
 	</script>
 	<script type="module" src="https://cdn.jsdelivr.net/npm/@playcanvas/web-components@0.1.11/dist/pwc.mjs"></script>
 	<script type="module" src="gaussian_splats/index.js"></script>
+	<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
 	<style>
 		.splat-intro { display: flex; gap: 40px; align-items: flex-start; }
 		.splat-bio { flex: 1; min-width: 0; }
@@ -59,6 +60,8 @@
 		#viewer-toggle.ready { opacity: 1; pointer-events: auto; }
 		#viewer-toggle:hover { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
 		#viewer-toggle .toggle-icon { font-size: 15px; }
+		#mesh-viewer { width: 100%; height: 450px; display: none; }
+		html.dark #mesh-viewer { background: var(--surface, #1a1a2e); }
 	</style>
 </head>
 
@@ -140,6 +143,14 @@
 						'    </pc-entity>',
 						'  </pc-scene>',
 						'</pc-app>',
+						'<model-viewer id="mesh-viewer"',
+						'  alt="Bicycle mesh"',
+						'  src="BlobsToSpokesWebsite/static/meshes/bicycle.glb"',
+						'  camera-controls',
+						'  shadow-intensity="1"',
+						'  exposure="0.4"',
+						'  draco-decoder-path="https://www.gstatic.com/draco/versioned/decoders/1.5.6/"',
+						'></model-viewer>',
 						'<div id="loadingIndicator">Loading\u2026</div>',
 						'<button id="viewer-toggle" title="Switch to Mesh view">',
 						'  <span class="toggle-icon">&#9653;</span> Mesh',
@@ -424,7 +435,7 @@
 	</section>
 
 	<footer style="text-align: center; padding: 20px; font-size: 0.8em; color: var(--text-muted);">
-		3D viewer powered by <a href="https://playcanvas.com">PlayCanvas</a> &amp; <a href="https://github.com/playcanvas/web-components">PlayCanvas Web Components</a>.
+		3D viewer powered by <a href="https://playcanvas.com">PlayCanvas</a> &amp; <a href="https://modelviewer.dev">model-viewer</a>.
 		3DGS viewer inspired by <a href="https://clementjambon.github.io">Clément Jambon</a>'s website.
 	</footer>
 
