@@ -393,8 +393,9 @@ html.dark .holo-text {
 .gh-card {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	align-items: center;
-	gap: 10px;
+	gap: 4px 10px;
 	padding: 10px 12px;
 	border: 1px solid var(--border);
 	border-radius: 6px;
@@ -412,6 +413,7 @@ html.dark .holo-text {
 	align-items: center;
 	gap: 6px;
 	flex-shrink: 0;
+	width: 100%;
 }
 
 .gh-repo-icon {
@@ -444,7 +446,6 @@ html.dark .holo-text {
 	gap: 10px;
 	font-size: 0.7em;
 	color: var(--text-muted);
-	flex-shrink: 0;
 }
 
 .gh-lang {
