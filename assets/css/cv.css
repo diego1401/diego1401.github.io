@@ -110,12 +110,12 @@
 .menu {
   list-style-type: none;
   margin: 10px auto;
-  padding: 6px 8px;
+  padding: 5px 7px;
   width: fit-content;
-  max-width: 92%;
+  max-width: 96%;
   background-color: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 50px;
+  border-radius: 999px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.07);
   position: sticky;
   top: 10px;
@@ -123,6 +123,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 2px;
+  column-gap: 2px;
   transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
@@ -130,44 +133,92 @@ html.dark .menu {
   box-shadow: 0 4px 20px rgba(0,0,0,0.35);
 }
 .menu > li {
-  display: inline;
+  display: inline-flex;
 }
 .menu > li > a {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  display: block;
-  padding: 7px 14px;
-  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border-radius: 999px;
   background: transparent;
   color: var(--text);
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.menu .nav-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: block;
+  transition: transform 0.15s;
 }
 .menu > li > a:hover,
 .menu > li > a:focus {
-  background: #fa7970;
-  color: #fff;
+  background: color-mix(in oklab, var(--accent, #fa7970) 14%, transparent);
+  color: var(--text);
   text-decoration: none;
+}
+.menu > li > a:hover .nav-icon,
+.menu > li > a:focus .nav-icon {
+  transform: scale(1.08);
+}
+.menu > li > a:focus-visible {
+  outline: 2px solid var(--accent, #fa7970);
+  outline-offset: 2px;
+}
+
+/* Narrow desktop: drop labels, keep round icon-only pill */
+@media (max-width: 900px) {
+  .menu > li > a {
+    padding: 8px;
+    gap: 0;
+  }
+  .menu .label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .menu .nav-icon {
+    width: 18px;
+    height: 18px;
+  }
+  #theme-toggle {
+    font-size: 16px;
+    padding: 6px 9px;
+    margin-left: 4px;
+  }
 }
 
 #theme-toggle {
   background: transparent;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 999px;
   color: var(--text);
   cursor: pointer;
   font-size: 14px;
-  padding: 6px 12px;
-  margin-left: 8px;
+  padding: 6px 11px;
+  margin-left: 6px;
   line-height: 1;
   font-family: inherit;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 #theme-toggle:hover {
-  background: #fa7970;
-  color: #fff;
-  border-color: var(--accent);
+  background: color-mix(in oklab, var(--accent, #fa7970) 14%, transparent);
+  border-color: var(--accent, #fa7970);
+}
+#theme-toggle:focus-visible {
+  outline: 2px solid var(--accent, #fa7970);
+  outline-offset: 2px;
 }
 
 

@@ -55,12 +55,12 @@ Créateur : Christophe HERMANN (@chrishrmnn)
 .menu {
   list-style-type: none;
   margin: 8px auto;
-  padding: 5px 6px;
+  padding: 4px 6px;
   width: fit-content;
-  max-width: 92%;
+  max-width: 98%;
   background-color: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 50px;
+  border-radius: 999px;
   box-shadow: 0 3px 12px rgba(0,0,0,0.07);
   position: sticky;
   top: 8px;
@@ -69,46 +69,80 @@ Créateur : Christophe HERMANN (@chrishrmnn)
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  row-gap: 2px;
+  column-gap: 2px;
   transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 .menu > li {
-  display: inline;
+  display: inline-flex;
 }
 .menu > li > a {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  display: block;
-  padding: 6px 10px;
-  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 8px;
+  border-radius: 999px;
   background: transparent;
   color: var(--text);
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.menu .nav-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: block;
+  transition: transform 0.15s;
+}
+.menu .label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
 }
 .menu > li > a:hover,
 .menu > li > a:focus {
-  background: #fa7970;
-  color: #fff;
+  background: color-mix(in oklab, var(--accent, #fa7970) 14%, transparent);
+  color: var(--text);
   text-decoration: none;
+}
+.menu > li > a:hover .nav-icon,
+.menu > li > a:focus .nav-icon {
+  transform: scale(1.08);
+}
+.menu > li > a:focus-visible {
+  outline: 2px solid var(--accent, #fa7970);
+  outline-offset: 2px;
 }
 
 #theme-toggle {
   background: transparent;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 999px;
   color: var(--text);
   cursor: pointer;
-  font-size: 13px;
-  padding: 5px 10px;
+  font-size: 16px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 6px 10px;
+  margin-left: 4px;
   line-height: 1;
   font-family: inherit;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 #theme-toggle:hover {
-  background: #fa7970;
-  color: #fff;
-  border-color: #fa7970;
+  background: color-mix(in oklab, var(--accent, #fa7970) 14%, transparent);
+  border-color: var(--accent, #fa7970);
+}
+#theme-toggle:focus-visible {
+  outline: 2px solid var(--accent, #fa7970);
+  outline-offset: 2px;
 }
 
 
