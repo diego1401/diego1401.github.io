@@ -176,3 +176,42 @@ a:hover, a:focus {
 .conf {
 	font-weight: 600;
 }
+
+
+/***************************
+/* Availability banner
+/* Reuses the .holo-text card + shimmer defined in cv.css / mobile.css.
+/* Lives here so it is written once for both breakpoints; the compound
+/* selector outranks the plain .holo-text rules in those stylesheets.
+***************************/
+.holo-text.holo-banner {
+	display: block;
+	padding: 14px 18px;
+	border-radius: 8px;
+	margin: 10px 0 6px;
+	font-size: 0.95em;
+	line-height: 1.5;
+}
+
+.holo-banner p {
+	margin: 0;
+}
+
+@media screen and (max-width: 540px) {
+	.holo-text.holo-banner {
+		padding: 12px 14px;
+		font-size: 0.9em;
+	}
+}
+
+/***************************
+/* Meta brand accent for the bio
+***************************/
+.meta-highlight {
+	color: #0064E0;
+	font-weight: 600;
+}
+
+html.dark .meta-highlight {
+	color: #5aa9ff;
+}
